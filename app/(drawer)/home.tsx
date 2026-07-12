@@ -1,6 +1,6 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function Home() {
     type ItemData = {
@@ -20,11 +20,15 @@ export default function Home() {
             id: '58694a0f-3da1-471f-bd96-145571e29d72',
             title: 'Third Item',
         },
+        {
+            id: '78694a0f-3da1-471f-bd96-145571e29d72',
+            title: 'Third Item',
+        },
     ];
 
     return (
-        <View style={{ flex: 1, alignItems: 'center', padding: 20 }}>
-            <View style={{ borderWidth: 0.5, borderColor: 'gray', padding: 20, borderRadius: 10, marginTop: 20, flexDirection: 'row', alignItems: 'center', width: '85%', backgroundColor: "white", elevation: 10, shadowColor: 'black', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 3.84 }}>
+        <ScrollView contentContainerStyle={{ justifyContent: 'center', alignItems: 'center', padding: 15 }}>
+            <View style={{ borderWidth: 0.5, borderColor: 'white', padding: 20, borderRadius: 10, marginTop: 20, flexDirection: 'row', alignItems: 'center', width: '85%', backgroundColor: "white", elevation: 10, shadowColor: 'black', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 3.84 }}>
                 <View style={{ marginRight: 15 }} >
                     <Ionicons name="person-circle-outline" size={75} color="black" />
                 </View>
@@ -39,24 +43,40 @@ export default function Home() {
 
             </View>
 
-            <View style={{ borderWidth: 0.5, borderColor: 'gray', padding: 20, borderRadius: 10, marginTop: 70, width: '85%', backgroundColor: "white", elevation: 10, shadowColor: 'black', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 3.84 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }} >
+            <View style={{ borderWidth: 0.5, borderColor: 'white', padding: 20, borderRadius: 10, marginTop: 70, width: '85%', backgroundColor: "white", elevation: 10, shadowColor: 'black', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.25, shadowRadius: 3.84 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 30 }} >
                     <Ionicons name="megaphone-outline" size={20} color="black" />
-                    <Text style={{ fontWeight: 'bold', fontSize: 20, marginLeft: 10 }}>Announcement Section</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 20, marginLeft: 10, }}>Announcement Section</Text>
                 </View>
-                <View style={{flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start'}}>
+                <View
+                    style={{
+
+                    }}
+                >
                     <FlatList
                         data={DATA}
+                        keyExtractor={(item) => item.id.toString()}
                         renderItem={({ item }) => (
-                            <View style={{ padding:1, borderBottomWidth: 0.5, borderColor: 'gray' }}>
-                                <Text style={{ fontWeight: 'bold', fontSize: 15 }}>{item.title}</Text>
+                            <View
+                                style={{
+                                    width: '100%',
+                                    padding: 20,
+                                    borderWidth: 1,
+                                    borderColor: '#2dcee3',
+                                    borderRadius: 5,
+                                    marginVertical: 10,
+                                    alignSelf: 'center',
+                                }}
+                            >
+                                <Text style={{ fontWeight: 'bold', fontFamily: 'Arial', color: "#2dcee3", fontSize: 18 }}>{item.title}</Text>
+                                <Text>{item.id}</Text>
                             </View>
                         )}
                     />
                 </View>
 
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
