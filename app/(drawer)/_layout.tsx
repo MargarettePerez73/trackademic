@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Drawer } from 'expo-router/drawer';
 import React from 'react';
 import { StyleSheet } from 'react-native';
@@ -26,19 +27,28 @@ export default function DrawerLayout() {
             <Drawer.Screen
                 name='home'
                 options={{
-                    drawerLabel: "Home"
+                    drawerLabel: "Home",
+                    drawerIcon: ({ color, size }) => (
+                        <Ionicons name="home-outline" size={20} color={color} />
+                    ),
                 }}
             />
             <Drawer.Screen
                 name='class'
                 options={{
-                    drawerLabel: "Class"
+                    drawerLabel: "Class",
+                    drawerIcon: ({ color, size }) => (
+                        <Ionicons name="list-outline" size={20} color={color} />
+                    ),
                 }}
             />
             <Drawer.Screen
                 name='performance'
                 options={{
-                    drawerLabel: "My Performance"
+                    drawerLabel: "My Performance",
+                    drawerIcon: ({ color, size }) => (
+                        <Ionicons name="share-social-outline" size={20} color={color} />
+                    ),
                 }}
             />
         </Drawer>
