@@ -1,7 +1,7 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Drawer } from 'expo-router/drawer';
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
+import DropdownMenu from '../components/DropdownMenu';
 
 export default function DrawerLayout() {
     return (
@@ -14,15 +14,7 @@ export default function DrawerLayout() {
       fontWeight: "bold",
     },
 
-    headerRight: () => (
-      <TouchableOpacity style={{ marginRight: 15 }}>
-        <Ionicons
-          name="ellipsis-horizontal-outline"
-          size={20}
-          color="black"
-        />
-      </TouchableOpacity>
-    ),
+    headerRight: () => <DropdownMenu/>,
 
     headerTitleContainerStyle: {
       left: 0,
