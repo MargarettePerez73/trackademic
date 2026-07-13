@@ -1,0 +1,9 @@
+{
+  "execMap": {
+    "ts": "ts-node"
+  },
+  "ext": "ts,tsx,js,json",
+  "env": {
+    "TS_NODE_COMPILER_OPTIONS": "{\"module\":\"commonjs\",\"moduleResolution\":\"node\",\"esModuleInterop\":true}"
+  }
+}

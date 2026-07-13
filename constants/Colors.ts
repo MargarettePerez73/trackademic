@@ -1,0 +1,18 @@
+export const Colors = {
+  sidebar:       '#2d3e50',
+  sidebarLabel:  '#8fa8be',
+  sidebarHover:  'rgba(255,255,255,0.07)',
+  sidebarBorder: 'rgba(255,255,255,0.08)',
+  accent:        '#17a589',
+  accentDark:    '#148f77',
+  blue:          '#2e86c1',
+  background:    '#f4f6f9',
+  card:          '#ffffff',
+  text:          '#2c3e50',
+  muted:         '#7f8c8d',
+  border:        'rgba(44,62,80,0.12)',
+  danger:        '#e74c3c',
+  archivedCard:  '#5d6d7e',
+  activeCard:    '#2e86c1',
+  inputBg:       '#f0f3f6',
+};
