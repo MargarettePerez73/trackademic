@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   eyeIcon:   { fontSize: 16 },
   loginBtn:  { backgroundColor: Colors.accent, borderRadius: 10, paddingVertical: 14, alignItems: 'center', marginBottom: 16 },
   loginBtnText: { color: '#fff', fontWeight: '700', fontSize: 15 },
-  demo:      { backgroundColor: '#eafaf6', borderWidth: 1, borderColor: '#a9dfcf', borderRadius: 10, padding: 14, marginBottom: 16 },
+  demo:      { backgroundColor: Colors.inputBg, borderWidth: 1, borderColor: Colors.border, borderRadius: 10, padding: 14, marginBottom: 16 },
   demoTitle: { color: Colors.accent, fontWeight: '700', fontSize: 12, marginBottom: 4 },
   demoText:  { color: '#5d6d7e', fontSize: 12 },
   regLink:   { color: Colors.muted, fontSize: 13, textAlign: 'center', marginTop: 4 },

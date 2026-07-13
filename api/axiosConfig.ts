@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Alert, Platform } from 'react-native';
 
-const myIP = '192.168.1.46';            
+const myIP = '10.80.67.25';            
 const host = Platform.OS === 'web' ? 'localhost' : myIP; 
 
 const baseURL = `http://${host}/track-assignment/api.php`;

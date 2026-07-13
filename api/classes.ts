@@ -3,6 +3,9 @@ import api from './axiosConfig';
 export const getClasses = (userId: number) =>
   api.get(`/api/classes/${userId}`).then((r) => r.data);
 
+export const getAllAvailableClasses = () =>
+  api.get('/api/classes').then((r) => r.data);
+
 export const joinClass = (userId: number, classCode: string) =>
   api.post('/api/classes/join', { user_id: userId, class_code: classCode }).then((r) => r.data);
 

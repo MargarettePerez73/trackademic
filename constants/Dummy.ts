@@ -15,7 +15,7 @@ export const DUMMY_CLASSES = [
     course_code: 'BSIT BA-3303',
     instructor: 'Jason C. Magsino',
     school_year: '2025-2026', semester: 'Midterm',
-    status: 'Active', banner_color: '#2e86c1',
+    status: 'Active', banner_color: '#f97316',
     schedules: ['Monday: 01:00 PM - 06:00 PM', 'Wednesday: 01:00 PM - 06:00 PM', 'Saturday: 07:00 AM - 12:00 PM'],
   },
 ];

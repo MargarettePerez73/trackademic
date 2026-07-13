@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   nav:        { flex: 1, padding: 12 },
   navLabel:   { color: Colors.sidebarLabel, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1.2, marginLeft: 10, marginBottom: 6, marginTop: 8 },
   navItem:    { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, paddingVertical: 13, borderRadius: 10, marginBottom: 2 },
-  navItemActive: { backgroundColor: 'rgba(23,165,137,0.18)' },
+  navItemActive: { backgroundColor: 'rgba(249,115,22,0.18)' },
   navText:    { flex: 1, color: '#c8d8e8', fontSize: 14, fontWeight: '500' },
   navTextActive: { color: '#fff' },
   chevron:    { color: '#5d7a96', fontSize: 18 },

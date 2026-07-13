@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Image } from 'react-native';
+import { FlatList, Image } from 'react-native';
 
 import {
-  StatusBar, StyleSheet, Text, TouchableOpacity, View,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { DrawerNav } from '../components/DrawerNav';
@@ -24,10 +28,28 @@ const BOTTOM_TABS: { key: Route; label: string }[] = [
   { key:'profile',     label:'Profile'     },
 ];
 
+const NOTIFICATIONS = [
+  'Jason Magsino posted a new lesson',
+  'New assignment: HTML & CSS Project',
+  'Class reminder: Session today at 2:00 PM',
+  'Grade posted for Quiz 1',
+  'Announcement: Midterm exam schedule released',
+];
+
 export default function RootLayout() {
   const { user, login, logout, restoreSession } = useAuth();
   const [route, setRoute] = useState<Route>('login');
   const [drawer, setDrawer] = useState(false);
+  const [notifOpen, setNotifOpen] = useState(false);
+
+  useEffect(() => {
+    if (!notifOpen) return;
+    const t = setTimeout(() => setNotifOpen(false), 4500);
+    return () => clearTimeout(t);
+  }, [notifOpen]);
+
+
+
 
   useEffect(() => {
     restoreSession().then(() => {
@@ -82,10 +104,32 @@ export default function RootLayout() {
           </View>
 
           <View style={styles.topRight}>
-            <TouchableOpacity style={styles.bellBtn}>
+            <TouchableOpacity
+              style={styles.bellBtn}
+              onPress={() => setNotifOpen((v) => !v)}
+              activeOpacity={0.8}
+            >
               <Text>🔔</Text>
-              <View style={styles.bellBadge}><Text style={styles.bellBadgeText}>2</Text></View>
+              <View style={styles.bellBadge}><Text style={styles.bellBadgeText}>{NOTIFICATIONS.length}</Text></View>
             </TouchableOpacity>
+
+            {notifOpen && (
+              <View style={styles.notifDropdownContainer}>
+                <FlatList
+                  data={NOTIFICATIONS}
+                  keyExtractor={(_, i) => i.toString()}
+                  scrollEnabled
+                  nestedScrollEnabled
+                  scrollEventThrottle={16}
+                  renderItem={({ item }) => (
+                    <TouchableOpacity style={styles.notifItem}>
+                      <Text style={styles.notifItemText}>{item}</Text>
+                    </TouchableOpacity>
+                  )}
+                />
+              </View>
+            )}
+
             <View style={styles.userAvatar}>
               <Text style={styles.userAvatarText}>
                 {(user.full_name || user.name || '').split(' ').map((n:string)=>n[0]).slice(0,2).join('')}
@@ -116,17 +160,62 @@ export default function RootLayout() {
 
 const styles = StyleSheet.create({
   root:       { flex:1, backgroundColor:Colors.background },
-  topBar:     { backgroundColor:'#fff', borderBottomWidth:1, borderBottomColor:'#e8edf2', flexDirection:'row', alignItems:'center', paddingHorizontal:14, paddingVertical:10, gap:10 },
+  topBar:     { backgroundColor:'#fff', borderBottomWidth:1, borderBottomColor:'#e8edf2', flexDirection:'row', alignItems:'center', paddingHorizontal:14, paddingVertical:10, gap:10, zIndex: 100, overflow: 'visible' },
   menuBtn:    { width:36, height:36, justifyContent:'center', alignItems:'center' },
   menuIcon:   { fontSize:20, color:Colors.sidebar },
   topLogo:    { flex:1, flexDirection:'row', alignItems:'center', gap:8 },
   logoImg:    { width:28, height:28 },
 
   topTitle:   { fontSize:16, fontWeight:'700', color:Colors.sidebar },
-  topRight:   { flexDirection:'row', alignItems:'center', gap:10 },
+  topRight:   { flexDirection:'row', alignItems:'center', gap:10, position: 'relative', zIndex: 101 },
   bellBtn:    { position:'relative', width:32, height:32, justifyContent:'center', alignItems:'center' },
   bellBadge:  { position:'absolute', top:0, right:0, backgroundColor:'#e74c3c', borderRadius:8, width:16, height:16, justifyContent:'center', alignItems:'center' },
   bellBadgeText:{ color:'#fff', fontSize:9, fontWeight:'700' },
+
+  notifDropdown: {
+    position: 'absolute',
+    top: 42,
+    right: 0,
+    width: 280,
+    maxHeight: 280,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#e8edf2',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.18,
+    shadowRadius: 12,
+    elevation: 30,
+    zIndex: 999,
+  },
+  notifDropdownContainer: {
+    position: 'absolute',
+    top: 42,
+    right: 0,
+    width: 280,
+    maxHeight: 300,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#e8edf2',
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.18,
+    shadowRadius: 12,
+    elevation: 30,
+    zIndex: 999,
+  },
+  notifItem: { 
+    paddingHorizontal: 14, 
+    paddingVertical: 12, 
+    borderBottomWidth: 1, 
+    borderBottomColor: '#f0f0f0',
+    backgroundColor: '#fff',
+  },
+  notifItemText: { color: Colors.text, fontSize: 13, fontWeight: '500', lineHeight: 18 },
+
   userAvatar: { width:30, height:30, borderRadius:15, backgroundColor:Colors.accent, justifyContent:'center', alignItems:'center' },
   userAvatarText:{ color:'#fff', fontWeight:'700', fontSize:12 },
   bottomBar:  { backgroundColor:'#fff', borderTopWidth:1, borderTopColor:'#e8edf2', flexDirection:'row' },

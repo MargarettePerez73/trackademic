@@ -5,7 +5,7 @@ import type { AuthUser } from '../../hooks/useAuth';
 
 const QUICK_LINKS = [
   { key:'classes',     label:'My Classes',     desc:'View enrolled classes',    color:Colors.activeCard },
-  { key:'performance', label:'My Performance', desc:'Track your scores & grades',color:'#8e44ad' },
+  { key:'performance', label:'My Performance', desc:'Track your scores & grades',color:Colors.accentDark },
   { key:'profile',     label:'My Profile',     desc:'View & edit your info',    color:Colors.accent },
 ];
 
@@ -30,7 +30,7 @@ export default function HomeScreen({ user, onNavigate, unreadCount }: Props) {
       </View>
       {/* Stats */}
       <View style={styles.stats}>
-        <View style={[styles.statCard, { backgroundColor:'#eafaf6' }]}>
+        <View style={[styles.statCard, { backgroundColor:Colors.inputBg }]}>
           <Text style={[styles.statVal, { color:Colors.accent }]}>2</Text>
           <Text style={styles.statLabel}>Active Classes</Text>
         </View>

@@ -1,6 +1,7 @@
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
-  Pressable, SafeAreaView, ScrollView, StyleSheet,
+  Image, Pressable, SafeAreaView, ScrollView, StyleSheet,
   Text, TextInput, TouchableOpacity, View,
 } from 'react-native';
 import { updateProfile } from '../../api/classes';
@@ -105,12 +106,19 @@ export default function ProfileScreen({ user, onUpdate }: Props) {
             <View style={s.qrAvatar}><Text style={s.qrAvatarText}>{initials}</Text></View>
             <Text style={s.qrName}>{form.full_name}</Text>
             <Text style={s.qrSrCode}>Sr Code: {user.sr_code}</Text>
-            <View style={s.qrPlaceholder}>
-              <Text style={s.qrPlaceholderText}>▣  QR Code  ▣</Text>
-              <Text style={s.qrPlaceholderSub}>{user.sr_code}</Text>
+            {/* Icon-style QR Code using MaterialCommunityIcons */}
+            <View style={s.qrIconWrap}>
+              <View style={s.qrIconTile}>
+                <MaterialCommunityIcons name="qrcode" size={48} color={Colors.accent} />
+              </View>
+              <Text style={s.qrIconSub}>{user.sr_code}</Text>
             </View>
             <View style={s.qrBrand}>
-              <View style={s.qrLogoBox}><Text style={s.qrLogoText}>T</Text></View>
+              <Image
+                source={require('../../trackademic-new-logo.png')}
+                style={s.qrLogoImg}
+                resizeMode="contain"
+              />
               <Text style={s.qrBrandName}>Trackademic</Text>
             </View>
           </View>
@@ -154,12 +162,11 @@ const s = StyleSheet.create({
   qrAvatarText: { color:'#fff', fontWeight:'800', fontSize:24 },
   qrName:       { fontSize:15, fontWeight:'700', color:Colors.text, marginTop:12 },
   qrSrCode:     { fontSize:12, color:Colors.muted, marginTop:4, marginBottom:16 },
-  qrPlaceholder:{ width:120, height:120, backgroundColor:'#f8f9fa', borderWidth:1, borderColor:'#e0e0e0', borderRadius:4, justifyContent:'center', alignItems:'center' },
-  qrPlaceholderText:{ fontSize:24, letterSpacing:4 },
-  qrPlaceholderSub: { fontSize:8, color:Colors.muted, marginTop:4 },
+  qrIconWrap:      { width:120, height:120, backgroundColor:'#f8f9fa', borderWidth:1, borderColor:'#e0e0e0', borderRadius:4, justifyContent:'center', alignItems:'center', gap:8 },
+  qrIconTile:      { width:56, height:56, borderRadius:10, backgroundColor:'rgba(0,0,0,0.04)', justifyContent:'center', alignItems:'center' },
+  qrIconSub:       { fontSize:8, color:Colors.muted, marginTop:4 },
   qrBrand:      { flexDirection:'row', alignItems:'center', gap:6, marginTop:16 },
-  qrLogoBox:    { width:20, height:20, borderRadius:4, backgroundColor:Colors.accent, justifyContent:'center', alignItems:'center' },
-  qrLogoText:   { color:'#fff', fontWeight:'800', fontSize:11 },
+  qrLogoImg:    { width:20, height:20 },
   qrBrandName:  { fontSize:12, fontWeight:'700', color:Colors.text },
   downloadBtn:  { marginTop:20, backgroundColor:Colors.blue, paddingHorizontal:24, paddingVertical:12, borderRadius:10 },
   downloadBtnText:{ color:'#fff', fontWeight:'700', fontSize:13 },
